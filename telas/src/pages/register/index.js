@@ -29,10 +29,15 @@ function Register() {
       </div>
 
       <div className="div-second-content">
-        <h3>Cadastrar Candidato</h3>
-        <p>Cadatre-se e encontre a oportunidade que deseja</p>
-        <img src={ gria } alt="logo-gria" />
+        <div className="div-header">
+          <div className="div-phrase">
+            <h3 className="h3-register">Cadastrar Candidato</h3>
+            <p>Cadatre-se e encontre a oportunidade que deseja</p>
+          </div>
 
+          <img className="img-logo-gria" src={ gria } alt="logo-gria" />
+        </div>
+        
         <form className="form">
           <input
             className="input-cpf-cnpj"              
