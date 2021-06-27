@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import cadastro from '../../images/cadastro1.png';
+import gria from '../../images/gria.png';
+
 
 function Register() {
 
@@ -23,8 +26,10 @@ function Register() {
   return(
     <div className="div-main">
       <div className="div-body-register">
+        <img src={ cadastro } alt="logo-cadastro" />
         <h3>Cadastrar Candidato</h3>
         <h6>Cadatre-se e encontre a oportunidade que deseja</h6>
+        <img src={ gria } alt="logo-gria" />
 
         <label htmlFor="cpf-cnpj" className="label-cpf-cnpj">
           <input
