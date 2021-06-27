@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cadastro from '../../images/cadastro1.png';
 import gria from '../../images/gria.png';
-
-
+import './index.css';
 function Register() {
 
   const [register, setRegister] = useState({
@@ -24,71 +23,63 @@ function Register() {
   };
 
   return(
-    <div className="div-main">
-      <div className="div-body-register">
+    <div className="div-main">      
+      <div className="div-first-content">
         <img src={ cadastro } alt="logo-cadastro" />
+      </div>
+
+      <div className="div-second-content">
         <h3>Cadastrar Candidato</h3>
-        <h6>Cadatre-se e encontre a oportunidade que deseja</h6>
+        <p>Cadatre-se e encontre a oportunidade que deseja</p>
         <img src={ gria } alt="logo-gria" />
 
-        <label htmlFor="cpf-cnpj" className="label-cpf-cnpj">
+        <form className="form">
           <input
-            className="input-cpf-cnpj"
-            id="cpf-cnpj"
+            className="input-cpf-cnpj"              
             placeholder="CPF ou CNPJ"
             name="cpf-cnpj"            
             type="text"
             onChange={ (event) => handleChange(event) }         
           />
-        </label>
 
-        <label htmlFor="userEmail" className="label-email">
           <input
-            className="input-email"
-            id="userEmail"
+            className="input-email"              
             placeholder="E-mail"
             name="email"          
-            type="text"
+            type="email"
             onChange={ (event) => handleChange(event) }
-          />
-        </label>
+          /> 
 
-        <label htmlFor="password" className="label-password">
           <input
             className="input-password"
-            id="password"
             placeholder="Senha"
             name="password"          
-            type="text"
+            type="password"
             onChange={ (event) => handleChange(event) }
           />
-        </label>
 
-        <label htmlFor="confirm-password" className="label-confirm-password">
           <input
-            className="input-confirm-password"
-            id="confirm-password"
+            className="input-confirm-password"              
             placeholder="Confirmar Senha"
             name="confirmPassword"          
-            type="text"
+            type="password"
             onChange={ (event) => handleChange(event) }
-          />
-        </label>
+          /> 
 
-        <button 
+          <button 
           type="button" 
           className="button-register"
           onClick={ handleClick }
-        >
-          CADASTRAR
-        </button>   
-
+          >
+            CADASTRAR
+          </button>   
+        </form>                     
         <Link className="link-login" to="/login">
           JÁ POSSUI CADASTRO? FAÇA LOGIN AQUI
         </Link>        
-      </div>      
+      </div>                   
     </div>
-  )
+  );
 }
 
 export default Register;
