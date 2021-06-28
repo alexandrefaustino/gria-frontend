@@ -5,7 +5,9 @@ function Login() {
   return(
     <div className="div-main">
       <Link to= "/register"> Voltar </Link>
-      Tela de Login
+      <br />
+      <br />
+      Tela de Login em construção
     </div>
   );
 }

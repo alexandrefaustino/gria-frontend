@@ -1,26 +1,35 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import cadastro from '../../images/cadastro1.png';
 import gria from '../../images/gria.png';
 import { IoEyeOff } from "react-icons/io5";
+import { validEmail, cpfIsValid, validPassword } from '../../helpers/validateInputs';
 import './index.css';
 function Register() {
-
   const [register, setRegister] = useState({
-    cpfCnpj: '',
+    cpf: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
+  const [status, setStatus] = useState(false);
+
   const handleChange = ({ target: { name, value } }) => {
     setRegister({
       ...register, [name]: value,
     });
-  };
-
-  const handleClick = () => {    
-    alert('Cadastro realizado com sucesso');
+  }; 
+  const verifyInput = () => {  
+    const { cpf, email,password, confirmPassword } = register;
+    if (!cpfIsValid(cpf)) { alert('Cpf invalid'); return false; } 
+    if (!validEmail(email)) { alert('Email invalid'); return false; }
+    if (!validPassword(password)) { alert('Password invalid'); return false; } 
+    if (password !== confirmPassword) { alert('Senhas não conferem'); return false; }
+    return true;    
+  }
+  const handleClick = () => {  
+    if (verifyInput()) setStatus(true);
   };  
 
   const showPassword = () => { 
@@ -33,10 +42,18 @@ function Register() {
     const tagInput = document.getElementById('confirmPassword');
     if ( tagInput.type === 'password') tagInput.type = "text";
     else tagInput.type = "password";
-  }
+  }  
 
-  return(
-    <div className="div-main">     
+  return(    
+    <div className="div-main">        
+      { 
+        status && <Redirect to= {{
+          pathname: "/sucess",
+          state: register.email,
+        }} 
+        />
+      }
+
       <div className="div-first-content">
         <img src={ cadastro } alt="logo-cadastro" />
       </div>
@@ -54,15 +71,15 @@ function Register() {
         <form className="form">
           <label className="label-input" htmlFor="">
             <input
-              className="input-cpf-cnpj"              
-              placeholder="CPF ou CNPJ"
-              name="cpf-cnpj"            
+              className="input-cpf"              
+              placeholder="CPF"
+              name="cpf"            
               type="text"
               onChange={ (event) => handleChange(event) }         
             />
           </label>
           
-          <label className="label-input" htmlFor="">
+          <label className="label-input" htmlFor="" id="id-email">
             <input
               className="input-email"              
               placeholder="E-mail"
